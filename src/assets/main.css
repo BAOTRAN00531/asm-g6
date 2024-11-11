@@ -13,3 +13,4 @@
 .cus-search-bar{
   @apply py-2.5 w-64 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2  dark:bg-gray-100    dark:placeholder-gray-400 dark:text-gray-400
 }
+

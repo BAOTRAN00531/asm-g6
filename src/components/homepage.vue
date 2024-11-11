@@ -1,10 +1,10 @@
 <template>
   <div id="root">
     <div class="content-wrapper max-w-screen-2xl text-base mx-auto px-8  ">
-      <header class="py-8 mx-10"> 
+      <header class="pt-8 pb-12  mx-10"> 
         <nav class=" flex flex-row justify-around items-center relative">
           <div class="logo  text-center  font-semibold cursor-pointer">
-            <img src="../img/logo.png" class="h-9 w-70" alt="">
+            <img src="../img/logo.png" class="h-9 w-70 ml-4" alt="">
           </div>
           <ul id="cus-top-menu" class=" hidden lg:flex lg:items-center lg:justify-end lg:gap-9  text-md text-gray-500 font-bold">
             <li class="cus-top-menu-item">
@@ -71,10 +71,20 @@
         </div>
        </nav>
     </header>
-     <main>
-        <div class="">
-
+     <main class=" lg:px-36">
+    
+        <div class=" slider h-[630px]  bg-[url('src/img/background.png')] bg-contain bg-no-repeat">
+            <div class=" block ml-14 pt-[21.5rem] w-1/2 h-full  justify-center items-center">
+              <div class="w-full bg-white h-72 rounded-lg shadow-xl">
+                <div class="flex flex-col gap-4 h-40 ">
+                  <div class=" mr-[28rem] mt-9 ml-12 py-0.5 text-white bg-[#4B6BFB] rounded-md flex items-center justify-center gap-4">Technology</div>
+                  <div class=" mr-12   ml-12 py-0.5 text-black  text-4xl font-bold rounded-md flex items-center justify-center gap-4">The Impact of Technology on the Workplace: How Technology is Changing</div>
+                </div>
+              </div>
+            </div>
         </div>
+ 
+        
      </main>
     </div>
   </div>
