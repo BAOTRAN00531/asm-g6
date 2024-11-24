@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'thumbnail-img': "url('../../img/background.png')"
+        'thumbnail-img': "url('../img/background.png')"
       }
     },
   },
