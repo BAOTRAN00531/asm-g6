@@ -25,6 +25,9 @@
             <li class="cus-top-menu-item ">
               <router-link to="/register">register</router-link>
             </li>
+            <li class="cus-top-menu-item ">
+              <router-link to="/login">login</router-link>
+            </li>
             <li class="lg:hidden">
               <div id="search-bar" class="flex flex-row">
               <div class="relative">
