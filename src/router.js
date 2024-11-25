@@ -4,59 +4,57 @@ import Home from './views/Home.vue';
 import SinglePost from './views/SinglePost.vue';
 import Author from './views/Author.vue';
 import Bloglisting from './views/BlogListing.vue';
-import Account from './views/Login.vue';
-import AddPost from './views/AddPost.vue'
-import EditPost from './views/EditPost.vue'
-import BlogPost from './views/BlogPost.vue'
-import Post from './views/Post.vue';
-import Register from './views/Register.vue';
 import Login from './views/Login.vue';
-
+import Register from './views/Register.vue';
+import AddPost from './views/AddPost.vue';
+import EditPost from './views/EditPost.vue';
+import BlogPost from './views/BlogPost.vue';
+import Post from './views/Post.vue';
 
 const routes = [
   {
     path: '/',
-    redirect: '/home' // Điều hướng mặc định về /home
+    redirect: '/Home' // Điều hướng mặc định về /home
   },
   {
-    path: '/home',
-    name: 'home',
+    path: '/Home',
+    name: 'Home',
     component: Home, // Component hiển thị ở trang chủ
   },
   {
-    path: '/post',
-    name: 'post',
+    path: '/Post',
+    name: 'Post',
     component: Post,
   },
   {
-    path: '/singlepost',
-    name: 'singlepost',
+    path: '/Singlepost',
+    name: 'Singlepost',
     component: SinglePost,
   },
   {
-    path: '/author',
-    name: 'author',
+    path: '/Author',
+    name: 'Author',
     component: Author,
   },
   {
-    path: '/bloglisting',
-    name: 'bloglisting',
+    path: '/Bloglisting',
+    name: 'Bloglisting',
     component: Bloglisting,
   },
   {
-    path: '/addpost',
-    name: 'addpost',
+    path: '/Addpost',
+    name: 'Addpost',
     component: AddPost,
   },
   {
-    path: '/editpost/:key',
-    name: 'editpost',
+    path: '/Editpost/:key',
+    name: 'Editpost',
     component: EditPost,
     props: true,
   },
   {
-    path: '/blogpost/:key',
-    name: 'blogpost',
+    path: '/Blogpost/:key',
+    name: 'Blogpost',
     component: BlogPost,
     props: true,
   },
@@ -80,4 +78,3 @@ const router = createRouter({
 });
 
 export default router;
-

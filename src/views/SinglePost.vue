@@ -69,7 +69,12 @@
 			<br />
 			<br />
 			One of the most rewarding aspects of traveling is immersing yourself
+<<<<<<< HEAD
 			in the local culture and customs. This includes trying local/-strong/-heart:>:o:-((:-h cuisine, attending cultural events and festivals, and interacting
+=======
+			in the local culture and customs. This includes trying local
+			cuisine, attending cultural events and festivals, and interacting
+>>>>>>> 27239f726bb2cff8778fb768047a6d9b230a3378
 			with locals. Learning a few phrases in the local language can also
 			go a long way in making connections and showing respect.
 		</p>
@@ -143,7 +148,12 @@
 			<b>Immerse Yourself in the Local Culture </b>
 			<br /><br />
 			One of the most rewarding aspects of traveling is immersing yourself
+<<<<<<< HEAD
 			in the local culture and customs. This includes trying local/-strong/-heart:>:o:-((:-h cuisine, attending cultural events and festivals, and interacting
+=======
+			in the local culture and customs. This includes trying local
+			cuisine, attending cultural events and festivals, and interacting
+>>>>>>> 27239f726bb2cff8778fb768047a6d9b230a3378
 			with locals. Learning a few phrases in the local language can also
 			go a long way in making connections and showing respect.
 		</p>
@@ -165,6 +175,7 @@
 			a lifetime. So pack your bags, embrace the adventure, and enjoy the
 			ride.
 		</p>
+<<<<<<< HEAD
 		<!-- <div class="w-full mb-8">
 			<form action="" @submit.prevent>
 				<textarea
@@ -250,10 +261,14 @@
 	<div class="text-end">
         <button @click="logout" class="p-3 bg-red-300 rounded-md w-100">Logout</button>
     </div>
+=======
+	</div>
+>>>>>>> 27239f726bb2cff8778fb768047a6d9b230a3378
 </template>
 
 <script>
 export default {
+<<<<<<< HEAD
     data() {
         return {
             newComment: '',
@@ -305,5 +320,9 @@ export default {
             this.$router.push('/');
         }
     }
+=======
+    name: 'Singlepost'
+>>>>>>> 27239f726bb2cff8778fb768047a6d9b230a3378
 };
 </script>
+

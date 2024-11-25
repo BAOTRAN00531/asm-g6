@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { RouterView } from 'vue-router';
+</script>
+
 <template>
   <div id="root" :class="{ dark: isDarkMode }">
     <div class="content-wrapper max-w-screen-2xl text-base mx-auto px-8  ">
@@ -49,7 +53,7 @@
             </li>
           </ul>
           <div class="flex flex-row">
-            <div id="" class="hidden lg:flex flex-row">
+            <div id="" class="flex-row hidden lg:flex">
               <div class="relative">
                 <form class="max-w-md mx-auto">
                   <div class="relative w-full">
