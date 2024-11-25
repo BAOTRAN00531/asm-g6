@@ -31,49 +31,55 @@ import { RouterView } from 'vue-router';
               <router-link to="/login">Login</router-link>
             </li>
             <li class="lg:hidden">
-              <div id="search-bar" class="flex flex-row">
-                <div class="relative">
-                  <form class="max-w-md mx-auto">
-                    <div class="relative w-full">
-                      <input type="search" name=""
-                        class=" py-2.5 w-40 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2  dark:bg-gray-100  dark:placeholder-gray-400 dark:text-gray-400"
-                        id="" placeholder="search">
-                      <button type="submit"
-                        class="absolute top-0 end-0 p-2.5  text-sm font-medium h-full text-zinc-800 bg-gray-100 rounded-e-lg dark:hover:bg-gray-100 ">
-                        <svg class=" w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                          viewBox="0 0 20 20">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                        </svg>
-                        <span class="sr-only">Search</span>
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <div class="flex flex-row">
-            <div id="" class="flex-row hidden lg:flex">
-              <div class="relative">
-                <form class="max-w-md mx-auto">
-                  <div class="relative w-full">
-                    <input type="search" name=""
-                      class=" py-2.5 w-40 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2  dark:bg-gray-100  dark:placeholder-gray-400 dark:text-gray-400"
-                      id="" placeholder="search">
-                    <button type="submit"
-                      class="absolute top-0 end-0 p-2.5  text-sm font-medium h-full text-zinc-800 bg-gray-100 rounded-e-lg dark:hover:bg-gray-100 ">
-                      <svg class=" w-4 h-4 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                      </svg>
-                      <span class="sr-only">Search</span>
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
+
+<div id="search-bar" class="flex flex-row">
+  <div class="relative">
+    <form @submit.prevent="search" class="max-w-md mx-auto">
+      <div class="relative w-full">
+        <input v-model="searchQuery" type="search"
+          class="py-2.5 w-40 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-gray-400"
+          placeholder="search" />
+        <button type="submit"
+          class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-zinc-800 bg-gray-100 rounded-e-lg dark:hover:bg-gray-100">
+          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 20 20">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+          </svg>
+          <span class="sr-only">Search</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</li>
+
+
+</ul>
+<div class="flex flex-row">
+<div id="" class="hidden lg:flex flex-row">
+<div class="relative">
+  <form @submit.prevent="search" class="max-w-md mx-auto">
+    <div class="relative w-full">
+      <input v-model="searchQuery" type="search"
+        class="py-2.5 w-40 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-gray-400"
+        placeholder="search" />
+      <button type="submit"
+        class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-zinc-800 bg-gray-100 rounded-e-lg dark:hover:bg-gray-100">
+        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+        </svg>
+        <span class="sr-only">Search</span>
+      </button>
+    </div>
+  </form>
+</div>
+</div>
+
+
             <!-- Dark Mode Toggle -->
             <div class="relative w-12 h-6 bg-gray-300 rounded-full cursor-pointer flex items-center px-1"
               @click="toggleDarkMode">
@@ -86,12 +92,10 @@ import { RouterView } from 'vue-router';
               </div>
             </div>
 
-
-
             <div v-if="isLoggedIn" class="create-post">
               <!-- <img :src="avatar" alt="Avatar" v-if="avatar" /> -->
 
-              <p class="text-red-600 bg-slate-200 py-3">Chào, {{ username }}!!</p>
+              <p class="text-red-600 bg-slate-200 py-3 p-5 rounded-lg "> Chào, <b>{{ username }}!! </b></p>
 
            
             <div class="block w-full sm:w-auto text-center font-bold right-3.5 ">
@@ -100,6 +104,8 @@ import { RouterView } from 'vue-router';
               </button>
             </div>
           </div>
+
+            
             <!-- <div class=" lg:hidden cursor-pointer">
               <svg id="cus-toggel-top-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -213,12 +219,12 @@ import { RouterView } from 'vue-router';
         </div>
       </div>
     </div>
+
   </footer>
 
 </template>
 
 <script>
-
 export default {
   name: 'App',
   data() {
@@ -226,7 +232,10 @@ export default {
       isDarkMode: false,
       isLoggedIn: false,
       greetingMessage: '',
-      username: '' // Add this line
+      username: '' ,// Add this line
+
+      searchQuery: '123', // Tìm kiếm
+
     };
   },
   // created() {
@@ -236,6 +245,7 @@ export default {
   //   }
   // },
 
+  // <p class="text-red-600 bg-slate-200 py-3 p-5 rounded-lg ">Chào, {{ username }}!!</p>
 
   created() {
     const username = localStorage.getItem('username');
@@ -259,12 +269,25 @@ export default {
       this.$router.push({ name: 'Home' }); // Chuyển về trang chủ
       alert('Bạn đã đăng xuất thành công!');
     },
+    search() {
+      if (this.searchQuery.trim()) {
+        this.$router.push({
+          name: 'SearchResults',
+          query: { q: this.searchQuery.trim() },
+        });
+      } else {
+        alert('Vui lòng nhập từ khóa tìm kiếm!');
+      }
+    },
+
   },
   mounted() {
     const savedMode = localStorage.getItem("darkMode") === "true";
     this.isDarkMode = savedMode;
     document.documentElement.classList.toggle("dark", this.isDarkMode);
   },
+
+
 };
 </script>
 <style>

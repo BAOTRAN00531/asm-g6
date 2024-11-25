@@ -8,11 +8,12 @@
 
     <!-- Image -->
     <div v-if="post.image" class="mb-6">
-      <img :src="post.image" :alt="post.title" class="w-full max-h-196 object-fill rounded-lg shadow-lg">
+      <img :src="post.image" :alt="post.title" class="w-full max-h-96 object-cover rounded-lg shadow-lg">
+      <!-- <img :src="post.image" :alt="post.title" class="w-full max-h-196 object-fill rounded-lg shadow-lg"> -->
     </div>
 
     <!-- Content -->
-    <div class="prose max-w-none mb-6" v-html="post.content"></div>
+    <div class="prose max-w-none mb-6 text-6xl" v-html="post.content"></div>
 
     <!-- Back Button -->
     <router-link 

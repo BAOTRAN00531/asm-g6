@@ -26,7 +26,7 @@
                         <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-facebook"></i></button>
                         <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-twitter"></i></button>
                         <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-instagram"></i></button>
-                        <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-youtube"></i></button>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-youtube"></i></button></a>
                     </div>
                     
 				</div>

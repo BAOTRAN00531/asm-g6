@@ -38,8 +38,8 @@
       <div class="text-sm font-thin text-center text-gray-500">750x100</div>
     </div>
   </div>
-  <div class="h-auto mb-4 ">
-    <div class="text-xl font-bold">Latest Post</div>
+  <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="text-3xl font-bold ">Latest Post</div>
     <div class="grid gap-8 mt-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
       <!-- Single Blog Post Card -->
@@ -49,7 +49,7 @@
         <!-- Click vao Post Image and Title -->
         <router-link :to="`./blogpost/${key}`" class="relative block">
           <img v-if="post.image" :src="post.image" :alt="post.title"
-            class="object-fill w-full h-56 transition-transform duration-300 ease-in-out transform hover:scale-105">
+            class="w-full h-56 object-cover transition-transform duration-300 ease-in-out transform hover:scale-105">
           <!-- object-cover   full man  hinh -->
           <div class="absolute bottom-0 left-0 w-full p-3 text-sm text-white bg-black bg-opacity-40">
             <p>{{ post.date }}</p>
@@ -62,7 +62,7 @@
             Danh mục : <span class="font-medium text-white bg-[#4B6BFB] rounded-md p-[4px]">{{ post.category }}</span>
           </p>
           <p class="mb-3 text-sm text-gray-700">
-            Tác giả: {{ author.name }}
+            Tác giả: <b>{{ post.author  }}</b>
           </p>
           <!-- Clickable Post Title -->
           <router-link :to="`/blogpost/${key}`" class="block">
@@ -122,16 +122,18 @@ export default {
   props: {
     author: {
       type: Object,
-      default: () => ({ name: 'Trần Phú Quý', avatar: '' })
+      default: () => ({ name: '', avatar: '' })
     }
   },
   data() {
     return {
-      posts: {}
+      posts: {},
+      isLoggedIn: false,
     }
   },
   created() {
     this.loadPosts()
+    
   },
   methods: {
     loadPosts() {

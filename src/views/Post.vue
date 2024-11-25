@@ -19,7 +19,7 @@
           <!-- Click vao Post Image and Title -->
           <router-link :to="`./blogpost/${key}`" class="block relative">
             <img v-if="post.image" :src="post.image" :alt="post.title"
-              class="w-full h-56 object-fill transition-transform duration-300 ease-in-out transform hover:scale-105">
+              class="w-full h-56 object-cover transition-transform duration-300 ease-in-out transform hover:scale-105">
             <!-- object-cover   full man  hinh -->
 
           </router-link>
@@ -30,7 +30,8 @@
               Danh mục : <span class="font-medium text-white bg-[#4B6BFB] rounded-md p-[4px]">{{ post.category }}</span>
             </p>
             <p class="text-gray-700 mb-3 text-sm">
-              Tác giả: {{ author.name }}
+              <!-- Tác giả: {{ author.name }} -->
+              Tác giả: {{ post.author }}
             </p>
             <!-- Clickable Post Title -->
             <router-link :to="`/blogpost/${key}`" class="block">
@@ -61,6 +62,7 @@
                 class="flex-1 sm:flex-none text-center px-3 py-2 bg-red-500 font-bold text-white rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">
                 Xóa
               </button>
+              
             </div>
 
 
@@ -71,6 +73,7 @@
       </div>
     </div>
   </div>
+
 </template>
 <script>
 export default {
@@ -78,12 +81,13 @@ export default {
   props: {
     author: {
       type: Object,
-      default: () => ({ name: 'Trần Phú Quý', avatar: '' })
-    }
+      default: () => ({ name: '', avatar: '' })
+    },
   },
   data() {
     return {
-      posts: {}
+      posts: {},
+      searchQuery: '',
     }
   },
   created() {
@@ -117,7 +121,21 @@ export default {
         localStorage.removeItem(key)
         this.loadPosts()
       }
-    }
+    },
+
+    // search() {
+    //   if (this.searchQuery.trim()) {
+    //     this.$router.push({
+    //       name: 'SearchResults',
+    //       query: { q: this.searchQuery.trim() },
+    //     });
+    //   } else {
+    //     alert('Vui lòng nhập từ khóa tìm kiếm!');
+    //   }
+    // },
+
+
+
   }
 }
 </script>

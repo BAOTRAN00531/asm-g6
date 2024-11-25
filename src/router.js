@@ -11,6 +11,9 @@ import EditPost from './views/EditPost.vue';
 import BlogPost from './views/BlogPost.vue';
 import Post from './views/Post.vue';
 
+import SearchResults from './views/SearchResults.vue';
+
+
 const routes = [
   {
     path: '/',
@@ -70,6 +73,13 @@ const routes = [
     component: Login,
     
   },
+
+  {
+    path: '/search',
+    name: 'SearchResults',
+    component: SearchResults,
+  },
+
 ];
 
 const router = createRouter({
