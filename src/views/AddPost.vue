@@ -1,96 +1,69 @@
 <template>
-     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-     <div class="p-4 border rounded-lg bg-gray-50">
-       <h2 class="mb-4 text-2xl font-bold text-blue-600 text-center">Tạo Bài Viết Mới</h2>
-       <form @submit.prevent="validateAndShowModal">
-         <!-- Tiêu đề -->
-         <div class="mb-3">
-           <label for="postTitle" class="block mb-2">Tiêu Đề</label>
-           <input
-             type="text"
-             id="postTitle"
-             v-model="postTitle"
-             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-             required
-           >
-         </div>
- 
-         <!-- Toolbar -->
-         <div class="mb-3 space-x-2">
-          <button
-        v-for="(tool, index) in toolbar"
-        :key="index"
-        type="button"
-        @click="formatText(tool.command)"
-        class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
-      >
-        {{ tool.label }}
-      </button>
+  <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <div class="p-4 border rounded-lg bg-gray-50">
+      <h2 class="mb-4 text-2xl font-bold text-blue-600 text-center">Tạo Bài Viết Mới</h2>
+      <form @submit.prevent="validateAndShowModal">
+        <!-- Tiêu đề -->
+        <div class="mb-3">
+          <label for="postTitle" class="block mb-2">Tiêu Đề</label>
+          <input type="text" id="postTitle" v-model="postTitle"
+            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+        </div>
 
-         </div>
- 
-         <!-- Nội dung -->
-         <div class="mb-3">
-           <label for="postContent" class="block mb-2">Nội Dung</label>
-           <div
-             ref="contentEditable"
-             contenteditable="true"
-             class="w-full h-40 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-           ></div>
-         </div>
- 
-         <!-- Upload ảnh -->
-         <div class="mb-3">
-           <label for="postImage" class="block mb-2">Thêm Ảnh</label>
-           <input
-             type="file"
-             id="postImage"
-             @change="handleImageUpload"
-             accept="image/*"
-             class="w-full px-3 py-2 border rounded-lg"
-           >
-         </div>
- 
-         <!-- Danh mục -->
-         <div class="mb-3">
-           <label for="postCategory" class="block mb-2">Chọn Danh Mục</label>
-           <select
-             v-model="selectedCategory"
-             class="w-full px-3 py-2 border rounded-lg"
-           >
-             <option v-for="category in categories" :key="category.value" :value="category.value">
-               {{ category.label }}
-             </option>
-           </select>
-         </div>
- 
-         <!-- Buttons -->
-         <div class="flex space-x-2 mt-6">
-           <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-bold">
-             Đăng
-           </button>
-           <router-link to="/" class=" px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 font-bold ">
-             Quay lại
-           </router-link>
-         </div>
-       </form>
-     </div>
- 
-     <!-- Modal -->
-     <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-       <div class="bg-white rounded-lg p-6 w-96">
-         <h4 class="text-xl font-bold mb-4">Đăng bài viết?</h4>
-         <div class="flex justify-end space-x-2">
-           <button
-             @click="addPost"
-             class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-           >
-             Ok
-           </button>
-           <button
-            @click="showModal = false"
-            class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-          >
+        <!-- Toolbar -->
+        <div class="mb-3 space-x-2">
+          <button v-for="(tool, index) in toolbar" :key="index" type="button" @click="formatText(tool.command)"
+            class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+            {{ tool.label }}
+          </button>
+
+        </div>
+
+        <!-- Nội dung -->
+        <div class="mb-3">
+          <label for="postContent" class="block mb-2">Nội Dung</label>
+          <div ref="contentEditable" contenteditable="true"
+            class="w-full h-40 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></div>
+        </div>
+
+        <!-- Upload ảnh -->
+        <div class="mb-3">
+          <label for="postImage" class="block mb-2">Thêm Ảnh</label>
+          <input type="file" id="postImage" @change="handleImageUpload" accept="image/*"
+            class="w-full px-3 py-2 border rounded-lg">
+        </div>
+
+        <!-- Danh mục -->
+        <div class="mb-3">
+          <label for="postCategory" class="block mb-2">Chọn Danh Mục</label>
+          <select v-model="selectedCategory" class="w-full px-3 py-2 border rounded-lg">
+            <option v-for="category in categories" :key="category.value" :value="category.value">
+              {{ category.label }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex space-x-2 mt-6">
+          <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-bold">
+            Đăng
+          </button>
+          <router-link to="/" class=" px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 font-bold ">
+            Quay lại
+          </router-link>
+        </div>
+      </form>
+    </div>
+
+    <!-- Modal -->
+    <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg p-6 w-96">
+        <h4 class="text-xl font-bold mb-4">Đăng bài viết?</h4>
+        <div class="flex justify-end space-x-2">
+          <button @click="addPost" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+            Ok
+          </button>
+          <button @click="showModal = false" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
             Đóng
           </button>
         </div>
@@ -119,15 +92,36 @@ export default {
         { value: 'Giai tri', label: 'Danh mục gt' },
         { value: 'The gioi', label: 'Danh mục tg' },
       ],
+      currentUser: null, // Lưu thông tin người dùng hiện tại
     };
   },
-  methods: {
-    formatText(command) {
-    // su dung tool
-    this.$refs.contentEditable.focus();
-    document.execCommand(command, false, null);
+  created() {
+    // Lấy thông tin người dùng từ localStorage
+    const storedUser = localStorage.getItem('username');
+    if (storedUser) {
+      this.currentUser = JSON.parse(storedUser);
+    } else {
+      alert('Bạn chưa đăng nhập! Chuyển hướng về trang chủ.');
+      this.$router.push({ name: 'Home' });
+    }
   },
-    
+  methods: {
+    // Dinh dang ngay
+    formatDate(date) {
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Tháng bắt đầu từ 0
+    const year = String(d.getFullYear()).slice(-2);
+    const hours = String(d.getHours()).padStart(2, '0');
+    return `${day}/${month}/${year} | ${hours}`;
+  },
+
+    formatText(command) {
+      // su dung tool
+      this.$refs.contentEditable.focus();
+      document.execCommand(command, false, null);
+    },
+
     handleImageUpload(event) {
       this.imageFile = event.target.files[0]
     },
@@ -153,7 +147,10 @@ export default {
         title: this.postTitle,
         content: this.$refs.contentEditable.innerHTML,
         category: this.selectedCategory,
-      }
+        author: this.currentUser, // Gắn thông tin người dùng vào bài viết
+        date: this.formatDate(new Date().toISOString()), // Ngày tạo bài viết
+      };
+
 
       if (this.imageFile) {
         try {
@@ -166,7 +163,7 @@ export default {
 
       // Lưu vào localStorage
       localStorage.setItem(`post_${Date.now()}`, JSON.stringify(postData))
-      
+
       // Chuyển hướng về trang chủ
       this.$router.push('/post')
     },

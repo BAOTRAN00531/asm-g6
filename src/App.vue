@@ -1,5 +1,6 @@
-<script setup lang="ts">
+<script setup>
 import { RouterView } from 'vue-router';
+
 </script>
 
 <template>
@@ -74,19 +75,31 @@ import { RouterView } from 'vue-router';
               </div>
             </div>
             <!-- Dark Mode Toggle -->
-            <div
-              class="relative w-12 h-6 bg-gray-300 rounded-full cursor-pointer flex items-center px-1"
-              @click="toggleDarkMode"
-            >
+            <div class="relative w-12 h-6 bg-gray-300 rounded-full cursor-pointer flex items-center px-1"
+              @click="toggleDarkMode">
               <!-- Gạt trắng (dấu tròn) -->
               <div
                 class="absolute w-4 h-4 bg-white rounded-full shadow transform transition-transform flex items-center justify-center"
-                :class="{ 'translate-x-6': isDarkMode }"
-              >
+                :class="{ 'translate-x-6': isDarkMode }">
                 <img v-if="isDarkMode" src="./img/moon.svg" alt="Dark Mode" class="w-3 h-3" />
                 <img v-else src="./img/sunny.svg" alt="Light Mode" class="w-3 h-3" />
               </div>
             </div>
+
+
+
+            <div v-if="isLoggedIn" class="create-post">
+              <!-- <img :src="avatar" alt="Avatar" v-if="avatar" /> -->
+
+              <p class="text-red-600 bg-slate-200 py-3">Chào, {{ username }}!!</p>
+
+           
+            <div class="block w-full sm:w-auto text-center font-bold right-3.5 ">
+              <button @click="logoutUser" class="px-5 py-3 bg-blue-500 text-white rounded-lg">
+                Đăng xuất
+              </button>
+            </div>
+          </div>
             <!-- <div class=" lg:hidden cursor-pointer">
               <svg id="cus-toggel-top-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -205,25 +218,46 @@ import { RouterView } from 'vue-router';
 </template>
 
 <script>
+
 export default {
   name: 'App',
   data() {
     return {
       isDarkMode: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      greetingMessage: '',
+      username: '' // Add this line
     };
   },
+  // created() {
+  //   const username = localStorage.getItem('username');
+  //   if (username) {
+  //     this.isLoggedIn = true;
+  //   }
+  // },
+
+
   created() {
     const username = localStorage.getItem('username');
     if (username) {
       this.isLoggedIn = true;
+      this.username = username; // Set the username here
+      this.greetingMessage = `Hello ${username}!`;
     }
   },
+
+
+
   methods: {
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
       document.documentElement.classList.toggle("dark", this.isDarkMode);
       localStorage.setItem("darkMode", this.isDarkMode);
+    },
+    logoutUser() {
+      localStorage.removeItem('username'); // Xóa thông tin người dùng
+      this.$router.push({ name: 'Home' }); // Chuyển về trang chủ
+      alert('Bạn đã đăng xuất thành công!');
     },
   },
   mounted() {

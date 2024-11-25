@@ -58,12 +58,12 @@ const routes = [
     component: BlogPost,
     props: true,
   },
-  // {
-  //   path: '/register',
-  //   name: 'register',
-  //   component: Register,
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
     
-  // },
+  },
   {
     path: '/login',
     name: 'login',
