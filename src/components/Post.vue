@@ -17,10 +17,13 @@
           class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-in-out ">
 
           <!-- Click vao Post Image and Title -->
-          <router-link :to="`./blogpost/${key}`" class="block relative">
+          <router-link :to="`/blogpost/${key}`" class="block relative">
             <img v-if="post.image" :src="post.image" :alt="post.title"
-              class="w-full h-56 object-cover transition-transform duration-300 ease-in-out transform hover:scale-105">
+              class="w-full h-56 object-fill transition-transform duration-300 ease-in-out transform hover:scale-105">
             <!-- object-cover   full man  hinh -->
+            <div class="absolute bottom-0 left-0 w-full p-3 text-sm text-white bg-black bg-opacity-40">
+      <p>{{ post.date }}</p>
+    </div>
 
           </router-link>
 
@@ -30,8 +33,9 @@
               Danh mục : <span class="font-medium text-white bg-[#4B6BFB] rounded-md p-[4px]">{{ post.category }}</span>
             </p>
             <p class="text-gray-700 mb-3 text-sm">
-              <!-- Tác giả: {{ author.name }} -->
-              Tác giả: {{ post.author }}
+              Tác giả riel:<i class="fa fa-user fa-fw" aria-hidden="true"></i> <b>{{ post.author  }}</b>
+<!-- 
+              Tác giả: {{ username }} -->
             </p>
             <!-- Clickable Post Title -->
             <router-link :to="`/blogpost/${key}`" class="block">
@@ -62,7 +66,6 @@
                 class="flex-1 sm:flex-none text-center px-3 py-2 bg-red-500 font-bold text-white rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">
                 Xóa
               </button>
-              
             </div>
 
 
@@ -73,25 +76,22 @@
       </div>
     </div>
   </div>
-
 </template>
 <script>
 export default {
-
-  props: {
-    author: {
-      type: Object,
-      default: () => ({ name: '', avatar: '' })
-    },
-  },
   data() {
     return {
-      posts: {},
-      searchQuery: '',
+      username: '',
+      posts: {}
     }
   },
   created() {
-    this.loadPosts()
+    this.loadPosts();
+    const username = localStorage.getItem('username');
+    if (username) {
+      this.isLoggedIn = true;
+      this.username = username; // Set username
+    }
   },
   methods: {
     loadPosts() {
@@ -121,21 +121,7 @@ export default {
         localStorage.removeItem(key)
         this.loadPosts()
       }
-    },
-
-    // search() {
-    //   if (this.searchQuery.trim()) {
-    //     this.$router.push({
-    //       name: 'SearchResults',
-    //       query: { q: this.searchQuery.trim() },
-    //     });
-    //   } else {
-    //     alert('Vui lòng nhập từ khóa tìm kiếm!');
-    //   }
-    // },
-
-
-
+    }
   }
 }
 </script>

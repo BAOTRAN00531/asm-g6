@@ -69,7 +69,7 @@
 			<br />
 			<br />
 			One of the most rewarding aspects of traveling is immersing yourself
-			in the local culture and customs. This includes trying local/-strong/-heart:>:o:-((:-h cuisine, attending cultural events and festivals, and interacting
+			in the local culture and customs. This includes trying local cuisine, attending cultural events and festivals, and interacting
 			with locals. Learning a few phrases in the local language can also
 			go a long way in making connections and showing respect.
 		</p>
@@ -143,7 +143,7 @@
 			<b>Immerse Yourself in the Local Culture </b>
 			<br /><br />
 			One of the most rewarding aspects of traveling is immersing yourself
-			in the local culture and customs. This includes trying local/-strong/-heart:>:o:-((:-h cuisine, attending cultural events and festivals, and interacting
+			in the local culture and customs. This includes trying local cuisine, attending cultural events and festivals, and interacting
 			with locals. Learning a few phrases in the local language can also
 			go a long way in making connections and showing respect.
 		</p>
@@ -164,47 +164,7 @@
 			you can make the most of your journey and create memories that last
 			a lifetime. So pack your bags, embrace the adventure, and enjoy the
 			ride.
-		</p>
-		<!-- <div class="w-full mb-8">
-			<form action="" @submit.prevent>
-				<textarea
-					name=""
-					id=""
-					class="w-full h-16 pt-5 pb-5 mb-5 bg-gray-200 rounded-lg ps-10 pe-5 text-slate-950"
-					placeholder="Add comments.."
-					v-model="newComment"
-				>
-				</textarea>
-				<button
-					class="px-5 py-1 mb-8 font-semibold rounded-lg bg-slate-500"
-				>
-					Submit
-				</button>
-			</form>
-			<div v-if="comments.length > 0" class="mt-4">
-				<h3>Comments:</h3>
-				<ul class="list-group">
-					<li
-						v-for="(comment, index) in comments"
-						:key="index"
-						class="list-group-item"
-					>
-						<div>
-							<strong>{{ comment.username }}:</strong>
-							{{ comment.text }}
-							<br />
-							<small class="text-gray-400">{{
-								comment.timestamp
-							}}</small>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<hr />
-			<p class="text-2xl font-semibold">Comments</p>
-		</div> -->
-		<h2 class="mb-4 text-center">Hello, {{ username }}!</h2>
-		
+		</p>		
 		<p class="mb-3 text-3xl font-bold">What do you think about this post?</p>
 		<form @submit.prevent="postComment">
 			<div class="mb-3">
@@ -242,14 +202,11 @@
 						}}</small>
 					</div>
 				</li>
-			</ul>/-strong/-heart:>:o:-((:-h </div>
+			</ul></div>
 		<div v-else class="p-5 pt-3 pb-3 mt-4 mb-4 text-2xl font-medium text-center rounded-md shadow-md bg-slate-100 ps-5 pe-5">
 			No comment yet
 		</div>
 	</div>
-	<div class="text-end">
-        <button @click="logout" class="p-3 bg-red-300 rounded-md w-100">Logout</button>
-    </div>
 </template>
 
 <script>

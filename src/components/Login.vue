@@ -1,5 +1,4 @@
 <template>
-
   <div class="flex items-center justify-center min-h-screen relative overflow-hidden">
     <!-- Bong bóng -->
     <div class="bubble bg-blue-400 w-40 h-40 opacity-50 absolute top-10 left-20"></div>
@@ -14,55 +13,25 @@
       <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Login</h2>
       <form @submit.prevent="handleLogin">
         <div class="mb-4">
-          <label for="username" class="flex items-center mb-1 text-gray-700">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            v-model="username"
-            class="w-full px-4 py-2 border border-yellow-300 rounded-lg"
-            placeholder="Username"
-          />
+          <label for="username" class="flex items-center mb-1 text-gray-700">Username</label>
+          <input type="text" id="username" v-model="username"
+            class="w-full px-4 py-2 border border-yellow-300 rounded-lg" placeholder="Username" />
           <p v-if="usernameError" class="text-red-500 text-sm mt-1">{{ usernameError }}</p>
         </div>
         <div class="mb-4">
-          <label for="password" class="flex items-center mb-1 text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            v-model="password"
-            class="w-full px-4 py-2 border border-yellow-300 rounded-lg"
-            placeholder="Password"
-          />
+          <label for="password" class="flex items-center mb-1 text-gray-700">Password</label>
+          <input type="password" id="password" v-model="password"
+            class="w-full px-4 py-2 border border-yellow-300 rounded-lg" placeholder="Password" />
           <p v-if="passwordError" class="text-red-500 text-sm mt-1">{{ passwordError }}</p>
         </div>
         <button type="submit" class="w-full bg-gray-600 text-gray-900 py-2 rounded-lg hover:bg-gray-700">
           Login
         </button>
       </form>
-      <div class="mt-4 text-center">
-        <p class="text-gray-400 mb-2">Or login with</p>
-        <div class="flex justify-center space-x-4">
-          <a href="https://www.facebook.com" target="_blank"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://twitter.com" target="_blank"
-            class="bg-blue-400 text-white px-4 py-2 rounded-lg hover:bg-blue-500">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://www.google.com" target="_blank"
-            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-            <i class="fab fa-google"></i>
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -71,29 +40,52 @@ export default {
       password: '',
       usernameError: '',
       passwordError: '',
+      loginError: ''
     };
   },
   methods: {
     handleLogin() {
+      // Reset lỗi
       this.usernameError = '';
       this.passwordError = '';
+      this.loginError = '';
 
+      // Kiểm tra trường username
       if (!this.username || this.username.length < 3) {
         this.usernameError = 'Tên người dùng phải có ít nhất 3 ký tự!';
         return;
       }
 
+      // Kiểm tra trường password
       if (!this.password || this.password.length < 6) {
         this.passwordError = 'Mật khẩu phải có ít nhất 6 ký tự!';
         return;
       }
 
-      // Giả sử đăng nhập thành công
-      localStorage.setItem('username', this.username);
-      this.$router.push('/');
-      alert('Đăng nhập thành công!');
-    },
-  },
+      // Lấy tất cả thông tin user từ localStorage
+      const users = Object.keys(localStorage)
+        .filter(key => key.startsWith('user_'))
+        .map(key => JSON.parse(localStorage.getItem(key)));
+
+      // Kiểm tra thông tin đăng nhập
+      const user = users.find(
+        u => u.username === this.username && u.password === this.password
+      );
+
+      if (user) {
+        // Lưu trạng thái đăng nhập
+        localStorage.setItem('username', this.username); // Lưu username thay vì user object
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        alert('Đăng nhập thành công!');
+        this.$router.push('/home').then(() => {
+          location.reload(); // Reload lại trang sau khi chuyển hướng
+        });
+      } else {
+        this.loginError = 'Tên người dùng hoặc mật khẩu không đúng!';
+        alert(this.loginError);
+      }
+    }
+  }
 };
 </script>
 

@@ -1,89 +1,87 @@
 <script setup>
 import { RouterView } from 'vue-router';
-
 </script>
 
 <template>
   <div id="root" :class="{ dark: isDarkMode }">
-    <div class="content-wrapper max-w-screen-2xl text-base mx-auto px-8  ">
-      <header class="pt-8 pb-12  mx-10">
-        <nav class=" flex flex-row justify-around items-center relative">
-          <div class="logo  text-center  font-semibold cursor-pointer">
-            <img src="/src/img/logo_2.png" class="h-9 w-70 ml-4" alt="">
+    <div class="content-wrapper max-w-screen-2xl text-base mx-auto px-8">
+      <header class="pt-8 pb-12 mx-10">
+        <nav class="flex flex-row justify-between items-center px-6">
+          <!-- Logo -->
+          <div class="logo text-center font-semibold cursor-pointer flex items-center">
+            <img src="./img/logo_2.png" class="h-9 w-70 ml-4" alt="Logo" />
           </div>
+
+          <!-- Menu -->
           <ul id="cus-top-menu" class="hidden lg:flex lg:items-center lg:gap-9 text-md text-gray-500 font-bold">
             <li v-if="isLoggedIn" class="cus-top-menu-item">
-              <router-link to="/">Home</router-link>
+              <router-link to="/Home">Home</router-link>
             </li>
             <li v-if="isLoggedIn" class="cus-top-menu-item">
-              <router-link to="/post">Post</router-link>
+              <router-link to="/Post">Post</router-link>
             </li>
             <li v-if="isLoggedIn" class="cus-top-menu-item">
-              <router-link to="/bloglisting">Blog Listing</router-link>
+              <router-link to="/BlogListing">Blog Listing</router-link>
             </li>
             <li v-if="isLoggedIn" class="cus-top-menu-item">
-              <router-link to="/author">Author</router-link>
+              <router-link to="/Singlepost">Single Post</router-link>
             </li>
-            <!-- <li v-if="!isLoggedIn" class="cus-top-menu-item">
-              <router-link to="/register">Register</router-link>
+            <!-- <li v-if="isLoggedIn" class="cus-top-menu-item">
+              <router-link to="/Author">Author</router-link>
             </li> -->
+            <li v-if="!isLoggedIn" class="cus-top-menu-item">
+              <router-link to="/register">Register</router-link>
+            </li>
             <li v-if="!isLoggedIn" class="cus-top-menu-item">
               <router-link to="/login">Login</router-link>
             </li>
-            <li class="lg:hidden">
+            
+          </ul>
 
-<div id="search-bar" class="flex flex-row">
-  <div class="relative">
-    <form @submit.prevent="search" class="max-w-md mx-auto">
-      <div class="relative w-full">
-        <input v-model="searchQuery" type="search"
-          class="py-2.5 w-40 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-gray-400"
-          placeholder="search" />
-        <button type="submit"
-          class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-zinc-800 bg-gray-100 rounded-e-lg dark:hover:bg-gray-100">
-          <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 20 20">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-          </svg>
-          <span class="sr-only">Search</span>
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+          <!-- Search and Dark Mode Toggle -->
+          <div class="flex items-center gap-x-4">
+            <!-- Thanh tìm kiếm -->
+            <div v-if="isLoggedIn" class="relative flex items-center">
+              <input type="text" v-model="searchQuery" placeholder="Search for posts..."
+                class="w-full px-5 py-3 text-sm border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring focus:ring-blue-300 focus:border-blue-500" />
+              <button @click="searchPosts"
+                class="absolute right-2 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6a4 4 0 110 8 4 4 0 010-8zm8 14l-4-4" />
+                </svg>
+              </button>
+            </div>
+            <!-- Modal hiển thị kết quả -->
+            <div v-if="showModal" class="modal-backdrop">
+              <div class="modal-content">
+                <!-- Header của modal -->
+                <div class="flex justify-between items-center">
+                  <h2 class="text-2xl font-bold">Kết quả tìm kiếm</h2>
+                  <button @click="closeModal"
+                    class="text-red-500 hover:text-red-700 transition-colors text-xl font-bold" aria-label="Close">
+                    &times;
+                  </button>
+                </div>
+                <!-- Nội dung của modal -->
+                <ul v-if="filteredPosts.length">
+                  <li v-for="(post, index) in filteredPosts" :key="index" @click="goToPost(post.key)"
+                    class="cursor-pointer hover:underline text-blue-600 mt-3">
+                    <h3 class="font-bold">{{ post.title }}</h3>
+                    <p class="italic">Danh mục: {{ post.category }}</p>
+                  </li>
+                </ul>
+                <p v-else class="text-red-500 font-bold py-3">Không có bài viết</p>
+              </div>
+            </div>
 
-</li>
 
-
-</ul>
-<div class="flex flex-row">
-<div id="" class="hidden lg:flex flex-row">
-<div class="relative">
-  <form @submit.prevent="search" class="max-w-md mx-auto">
-    <div class="relative w-full">
-      <input v-model="searchQuery" type="search"
-        class="py-2.5 w-40 z-20 rounded-l-lg text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 dark:bg-gray-100 dark:placeholder-gray-400 dark:text-gray-400"
-        placeholder="search" />
-      <button type="submit"
-        class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-zinc-800 bg-gray-100 rounded-e-lg dark:hover:bg-gray-100">
-        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 20 20">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-        </svg>
-        <span class="sr-only">Search</span>
-      </button>
-    </div>
-  </form>
-</div>
-</div>
+            
 
 
             <!-- Dark Mode Toggle -->
             <div class="relative w-12 h-6 bg-gray-300 rounded-full cursor-pointer flex items-center px-1"
               @click="toggleDarkMode">
-              <!-- Gạt trắng (dấu tròn) -->
               <div
                 class="absolute w-4 h-4 bg-white rounded-full shadow transform transition-transform flex items-center justify-center"
                 :class="{ 'translate-x-6': isDarkMode }">
@@ -92,44 +90,28 @@ import { RouterView } from 'vue-router';
               </div>
             </div>
 
-            <div v-if="isLoggedIn" class="create-post">
-              <!-- <img :src="avatar" alt="Avatar" v-if="avatar" /> -->
-
-              <p class="text-red-600 bg-slate-200 py-3 p-5 rounded-lg "> Chào, <b>{{ username }}!! </b></p>
-
-           
-            <div class="block w-full sm:w-auto text-center font-bold right-3.5 ">
-              <button @click="logoutUser" class="px-5 py-3 bg-blue-500 text-white rounded-lg">
-                Đăng xuất
+            <!-- User Info and Logout -->
+            <div v-if="isLoggedIn" class="flex items-center gap-x-4">
+              <p class="text-blue-600">Hello, {{ username }}!</p>
+              <button @click="logoutUser" class="px-5 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                Logout
               </button>
             </div>
-          </div>
-
-            
-            <!-- <div class=" lg:hidden cursor-pointer">
-              <svg id="cus-toggel-top-menu-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-            </div> -->
           </div>
         </nav>
       </header>
     </div>
 
-    <div class="content-wrapper max-w-screen-2xl text-base mx-auto px-8  ">
-
+    <div class="content-wrapper max-w-screen-2xl text-base mx-auto px-8">
       <router-view></router-view>
-
     </div>
-
   </div>
   <footer class="bg-gray-100">
     <div class="mx-auto w-full max-w-screen-xl p-10 py-6 lg:py-8">
       <div class="md:flex md:justify-between">
         <div class="mb-6 sm:mr-16  md:mb-0">
           <a href="#" class="flex items-center">
-            <img src="../img/logo_2.png" class="h-8 me-3" alt="" />
+            <img src="./img/logo_2.png" class="h-8 me-3" alt="" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-bl">MetaBlog</span>
           </a>
         </div>
@@ -138,7 +120,8 @@ import { RouterView } from 'vue-router';
             <h2 class="mb-3 text-lg font-semibold text-gray-900">About</h2>
             <ul class="text-gray-500 dark:text-gray-400 font-sans w-48">
               <li class="mb-4">
-                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at nisi lorem. Nullam fringilla
+                <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at nisi lorem.
+                  Nullam fringilla
                   efficitur orci, ac molestie nulla tempus ac. </span>
               </li>
               <li>
@@ -219,9 +202,7 @@ import { RouterView } from 'vue-router';
         </div>
       </div>
     </div>
-
   </footer>
-
 </template>
 
 <script>
@@ -229,70 +210,74 @@ export default {
   name: 'App',
   data() {
     return {
+      searchQuery: '',
+      posts: [], // Mảng bài viết từ localStorage
+      filteredPosts: [],
+      showModal: false,
       isDarkMode: false,
       isLoggedIn: false,
-      greetingMessage: '',
-      username: '' ,// Add this line
-
-      searchQuery: '123', // Tìm kiếm
-
+      username: ''
     };
   },
-  // created() {
-  //   const username = localStorage.getItem('username');
-  //   if (username) {
-  //     this.isLoggedIn = true;
-  //   }
-  // },
-
-  // <p class="text-red-600 bg-slate-200 py-3 p-5 rounded-lg ">Chào, {{ username }}!!</p>
-
   created() {
     const username = localStorage.getItem('username');
     if (username) {
       this.isLoggedIn = true;
-      this.username = username; // Set the username here
-      this.greetingMessage = `Hello ${username}!`;
+      this.username = username; // Set username
     }
   },
-
-
-
   methods: {
+    // Lấy danh sách bài viết từ localStorage
+    loadPosts() {
+      const keys = Object.keys(localStorage).filter(key => key.startsWith('post_'));
+      this.posts = keys.map(key => JSON.parse(localStorage.getItem(key)));
+    },
+    // Xử lý tìm kiếm
+    searchPosts() {
+      // Lấy tất cả bài viết từ localStorage
+      this.posts = Object.keys(localStorage)
+        .filter((key) => key.startsWith('post_')) // Lọc bài viết theo key bắt đầu bằng 'post_'
+        .map((key) => ({ key, ...JSON.parse(localStorage.getItem(key)) })); // Thêm key vào object bài viết
+
+      // Lọc bài viết theo tiêu đề
+      this.filteredPosts = this.posts.filter((post) =>
+        post.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+
+      // Hiển thị modal
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    goToPost(key) {
+      // Điều hướng đến trang BlogPost
+      this.$router.push({ path: `/blogpost/${key}` });
+      this.closeModal();
+    },
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
-      document.documentElement.classList.toggle("dark", this.isDarkMode);
-      localStorage.setItem("darkMode", this.isDarkMode);
+      document.documentElement.classList.toggle('dark', this.isDarkMode);
+      localStorage.setItem('darkMode', this.isDarkMode);
     },
     logoutUser() {
-      localStorage.removeItem('username'); // Xóa thông tin người dùng
-      this.$router.push({ name: 'Home' }); // Chuyển về trang chủ
+      localStorage.removeItem('username'); // Xóa thông tin đăng nhập
+      this.isLoggedIn = false;
+      this.username = '';
+      this.$router.push('/login');
       alert('Bạn đã đăng xuất thành công!');
-    },
-    search() {
-      if (this.searchQuery.trim()) {
-        this.$router.push({
-          name: 'SearchResults',
-          query: { q: this.searchQuery.trim() },
-        });
-      } else {
-        alert('Vui lòng nhập từ khóa tìm kiếm!');
-      }
-    },
-
+    }
   },
   mounted() {
-    const savedMode = localStorage.getItem("darkMode") === "true";
+    this.loadPosts(); // Tải bài viết khi ứng dụng khởi động
+    const savedMode = localStorage.getItem('darkMode') === 'true';
     this.isDarkMode = savedMode;
-    document.documentElement.classList.toggle("dark", this.isDarkMode);
-  },
-
-
+    document.documentElement.classList.toggle('dark', this.isDarkMode);
+  }
 };
 </script>
+
 <style>
-/* Bạn có thể thêm các kiểu tùy chỉnh ở đây */
-/* Thêm vào tệp styles.css hoặc trong thẻ <style> của Vue */
 html.dark {
   background-color: #21253c;
   color: #ffffff;
@@ -303,12 +288,29 @@ html {
   color: #000000;
 }
 
-/* Đảm bảo các icon luôn căn giữa và ẩn khi cần */
-.transition-opacity {
-  transition: opacity 0.3s ease;
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* Đảm bảo modal ở trên cùng */
 }
 
-.opacity-0 {
-  opacity: 0;
+.modal-content {
+  position: relative;
+  /* Đảm bảo modal nội dung theo modal-backdrop */
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  z-index: 10000;
+  /* Nội dung modal cao hơn backdrop */
 }
 </style>

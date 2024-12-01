@@ -1,29 +1,43 @@
+<!-- src/views/Contact.vue -->
 <template>
-    <span class="container flex justify-center"><span class="text-3xl font-bold">Page Title</span></span>
-        <span class="container flex justify-center py-4"><a class="px-2 text-xl hover:text-neutral-500" href="#">Home</a> <span> | </span> <a class="px-2 text-xl hover:text-neutral-500" href="#">Link</a></span>
-        <div class=" mb-6 lg:mb-16 slider lg:h-[630px] sm:min-h-[200px] bg-[url('../img/background.png')] bg-cover  bg-no-repeat mx-auto">
-          <div class="w-full h-full  bg-gray-900 bg-opacity-40 mx-auto" >
-            <div class="pt-10  xl:ml-20 xl:mr-[1300px] sm:ml-10 sm:mr-[500px] text-white text-center">
-              <div class=" lg:mt-[430px] py-0.5 text-white bg-[#4B6BFB] rounded-md flex items-center justify-center gap-4">Technology</div>
-            </div>
-            <div class="xl:ml-20 xl:mr-[940px] sm:ml-10 sm:mr-40 text-white text-center">
-              <div class="  text-2xl text-left font-semibold  py-0.5 text-white  rounded-md flex items-center justify-center gap-4">The Impact of Technology on the Workplace: How Technology is Changing</div>
-            </div>
-            <div class="inline-flex justify-start items-center gap-5">
-                      <div class="flex justify-start items-center gap-3 ml-10 lg:ml-20">
-                        <img style="width: 36px; height: 36px; border-radius: 28px" src="https://via.placeholder.com/36x36" />
-                        <div class="text-white   text-base font-medium leading-6 break-words">Jason Francisco</div>
-                      </div>
-                      <div class="text-white  text-base font-normal leading-6 break-words">August 20,2022</div>
-                  </div>
-          </div>
-        </div>
-        <div class="mb-4 h-auto ">
+    <div class="container w-8/12 sm:w-200px  mb-20 sm:mb-10 mx-auto">
+			<div class="w-full rounded-lg bg-slate-100" style="height: 344px">
+				<div class="lg:content-center content-start lg:w-5/12 h-full  sm:mx-4  lg:mx-auto">
+					<div class="flex justify-center w-8/12 h-auto   sm:mt-8 mx-auto">
+						<img
+							src="../img/background.png"
+							alt=""
+							class="my-auto rounded-full"
+							style="width: 64px; height: 64px"
+						/>
+						<div class="my-auto  ms-5">
+							<p class="text-xl  sm:text-lg font-bold">Jonathan Doe</p>
+							<span class="font-thin text-gray-400">Collaborator & Editor</span>
+						</div>
+					</div>
+					<p class="py-4 lg:py-5 mx-auto text-base text-center text-slate-600">
+						Meet Jonathan Doe, a passionate writer and blogger with
+						a love for technology and travel. Jonathan holds a
+						degree in Computer Science and has spent years working
+						in the tech industry, gaining a deep understanding of
+						the impact technology has on our lives.
+					</p>
+                    <div class="flex justify-center ">
+                        <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-facebook"></i></button>
+                        <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-twitter"></i></button>
+                        <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-instagram"></i></button>
+                        <button class="mx-1 text-white rounded-md bg-slate-600" style="height: 32px; width: 32px;"><i class="fa-brands fa-youtube"></i></button>
+                    </div>
+                    
+				</div>
+			</div>
+		</div>
+		<div class="mb-4 h-auto ">
             <div class="text-xl font-bold">Latest Post</div>
-            <div class="grid grid-cols-1  sm:gap-6 lg:grid-cols-2  justify-items-center">
+            <div class="grid grid-cols-1  sm:gap-6 lg:grid-cols-3  justify-between">
                 <div class="block my-4 border rounded-lg border-slate-200"
                   style="height: 488px; width: 392px">
-                  <img src="/src/img/background.png"alt=""class="mx-auto my-4" style="width: 360px; height: 240px"/>
+                  <img src="/src/img/background.png"alt=""class="mx-auto my-4" style="width: 400px; height: 240px"/>
                   <button class="w-auto p-1 my-3 text-blue-600 rounded-sm bg-sky-50 ms-4">Technology</button>
                   <p class="text-xl font-bold ms-4">The Impact of Technology on the Workplace: How Technology is Changing</p>
                   <div class="relative mx-4 my-4">
@@ -36,7 +50,7 @@
                 </div>
                 <div class="block my-4 border rounded-lg border-slate-200"
                   style="height: 488px; width: 392px">
-                  <img src="/src/img/background.png"alt=""class="mx-auto my-4" style="width: 360px; height: 240px"/>
+                  <img src="/src/img/background.png"alt=""class="mx-auto my-4" style="width: 400px; height: 240px"/>
                   <button class="w-auto p-1 my-3 text-blue-600 rounded-sm bg-sky-50 ms-4">Technology</button>
                   <p class="text-xl font-bold ms-4">The Impact of Technology on the Workplace: How Technology is Changing</p>
                   <div class="relative mx-4 my-4">
@@ -49,7 +63,7 @@
                 </div>
                 <div class="block my-4 border rounded-lg border-slate-200"
                   style="height: 488px; width: 392px">
-                  <img src="/src/img/background.png"alt=""class="mx-auto my-4" style="width: 360px; height: 240px"/>
+                  <img src="/src/img/background.png"alt=""class="mx-auto my-4" style="width: 400px; height: 240px"/>
                   <button class="w-auto p-1 my-3 text-blue-600 rounded-sm bg-sky-50 ms-4">Technology</button>
                   <p class="text-xl font-bold ms-4">The Impact of Technology on the Workplace: How Technology is Changing</p>
                   <div class="relative mx-4 my-4">
@@ -152,10 +166,6 @@
 
 <script>
 export default {
-    name: 'bloglisting',
+    name: 'author',
 };
 </script>
-
-<style scoped>
-/* Bạn có thể thêm các kiểu tùy chỉnh ở đây nếu cần */
-</style>
